@@ -3,6 +3,7 @@ package me.tina.monsterhunter.entity;
 import java.util.logging.Logger;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Weapon {
@@ -10,10 +11,19 @@ public class Weapon {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotNull
     private String weaponClass;
+
+    @NotNull
     private String name;
+
+    @NotNull
     private int attackPower;
+
+    @NotNull
     private int rarity;
+
+    @NotNull
     private int parentId;
 
     private final static Logger LOGGER = Logger.getLogger(Weapon.class.getName());
@@ -24,7 +34,13 @@ public class Weapon {
     private final static int DEFAULT_RARITY = 0;
     private final static int DEFAULT_PARENT_ID = 0;
 
-    public Weapon() {}
+    public Weapon() {
+        weaponClass = DEFAULT_WEAPON_CLASS;
+        name = DEFAULT_NAME;
+        attackPower = DEFAULT_ATTACK_POWER;
+        rarity = DEFAULT_RARITY;
+        parentId = DEFAULT_PARENT_ID;
+    }
 
     public Weapon(String weaponClass, String name, int attackPower, int rarity, int parentId) {
         this.setWeaponClass(weaponClass);
